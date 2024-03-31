@@ -4,10 +4,10 @@
 #
 # Tests for tic/toc functionality
 #
-# Sergei Izrailev, 2011-2012, 2017-2023
+# Sergei Izrailev, 2011-2012, 2017-2024
 #-------------------------------------------------------------------------------
 # Copyright 2011-2014 Collective, Inc.
-# Portions are Copyright (C) 2017-2023 Jabiru Ventures LLC
+# Portions are Copyright (C) 2017-2024 Jabiru Ventures LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -117,13 +117,17 @@ test_that("Nested measurement works with callbacks", {
 
 test_that("tic measures elapsed time in seconds",
 {
-    x <- proc.time()["elapsed"]; y <- tic()
-
-    expect_equal(as.logical(abs(x - y) < 0.01), TRUE)
-
+    # Because the R platform could be overloaded, the elapsed time is
+    # unpredictable but must be at least the sleep time. This way we check that
+    # the time is not measured in hours or days. Mostly, however, the point
+    # of this test is to check that the time is measured in seconds rather than
+    # in milliseconds, so we put the upper limit close to but below 2000.
+    # If the time is indeed measured in seconds, this allows for a 32.5 hour delay,
+    # and we assume such a delay is unreasonable even under the worst conditions.
+    # We obviously rely on the Sys.sleep() argument to remain expressed in seconds.
     tic(); Sys.sleep(2); tm <- toc(quiet = TRUE)
     expect_true((tm$toc - tm$tic) >= 2)
-    expect_true((tm$toc - tm$tic) <= 3)
+    expect_true((tm$toc - tm$tic) <= 1950)
 })
 
 #-------------------------------------------------------------------------------

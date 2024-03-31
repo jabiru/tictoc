@@ -1,7 +1,7 @@
 Package: tictoc
 Title: Functions for Timing R Scripts, as Well as Implementations of "Stack"
     and "StackList" Structures
-Version: 1.2
+Version: 1.2.1
 Author: Sergei Izrailev
 Maintainer: Sergei Izrailev <sizrailev@jabiruventures.com>
 Description: Code execution timing functions 'tic' and 'toc' that
@@ -19,7 +19,7 @@ Depends:
 License: Apache License (== 2.0) | file LICENSE
 Copyright: Copyright (C) Collective, Inc. | file inst/COPYRIGHTS
 Encoding: UTF-8
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.3
 Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

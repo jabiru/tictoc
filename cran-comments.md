@@ -6,15 +6,13 @@
 
 ## revdepcheck results
 
-We checked 45 reverse dependencies (40 from CRAN + 5 from Bioconductor), comparing R CMD check results across CRAN and dev versions of this package.
+We checked 53 reverse dependencies (48 from CRAN + 5 from Bioconductor), comparing R CMD check results across CRAN and dev versions of this package.
 
  * We saw 0 new problems
- * We failed to check 3 packages
+ * We failed to check 1 packages
 
 Issues with CRAN packages are summarised below.
 
 ### Failed to check
 
-* EmiR    (NA)
-* fcaR    (NA)
-* netmeta (NA)
+* D2MCS (NA)
