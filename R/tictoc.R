@@ -244,11 +244,24 @@ toc <- function(log = FALSE, quiet = FALSE, func.toc = toc.outmsg, ...)
 #' @return \code{toc.outmsg} returns formatted message.
 #' @export
 #' @rdname tic
-toc.outmsg <- function(tic, toc, msg)
+toc.outmsg <- function (tic, toc, msg) 
 {
-   if (is.null(msg) || is.na(msg) || length(msg) == 0) outmsg <- paste0(round(toc - tic, 3), " sec elapsed")
-   else outmsg <- paste0(msg, ": ", round(toc - tic, 3), " sec elapsed")
-   outmsg
+  secs <- toc - tic
+  if (secs < 60) {
+    dur <- paste(round((toc - tic), 3), "seconds elapsed")
+  } else if (secs < 60 * 60) {
+    dur <- paste(round((toc - tic) / 60, 3), "minutes elapsed")
+  } else if (secs < 60 * 60 * 24) {
+    dur <- paste(round((toc - tic) / (60 * 60), 3), "hours elapsed")
+  } else {
+    dur <- paste(round((toc - tic) / (24 * 60 * 60), 3), "days elapsed")
+  }
+  if (is.null(msg) || is.na(msg) || length(msg) == 0) {
+    outmsg <- dur
+  } else {
+    outmsg <- paste0(msg, ": ", dur)
+  }
+  return(outmsg)
 }
 
 #-------------------------------------------------------------------------------
